@@ -75,23 +75,46 @@ Add a HeatMap control to your xml layout.
 Back in your activity or fragment you would get a reference to the BottomSheetLayout like any other view.
 ```java
 HeatMap heatMap = (HeatMap) findViewById(R.id.heatmap);
+// For kotlin you don't need to call findViewById
 ```
 
 Set the range that you want the heat maps gradient to cover.
 
 ```java
-heatMap.setMinimum(0.0);
-heatMap.setMaximum(100.0);
+heatMap.setMinimum(0.0); // It sets the minimum intensity for the highlighted area
+heatMap.setMaximum(100.0); // It sets the Maximum intensity for the highlighted area
 ```
 
 Now you can add data to the heat map.
 
 ```java
-//add random data to the map
+//add random data to the map. Below Code Randomly generate 20 random points.
+//You can increase or decrease the number of points by changing the range
+
+//For Java
+
 Random rand = new Random();
+
 for (int i = 0; i < 20; i++) {
-    HeatMap.DataPoint point = new HeatMap.DataPoint(rand.nextFloat(), rand.nextFloat(), rand.nextDouble() * 100.0);
-    heatMap.addData(point);
+    HeatMap.DataPoint point = new HeatMap.DataPoint(
+    rand.nextFloat(), // x-axis movement & value should be only between 0 to 1
+    rand.nextFloat(), // y-axis movement& value should be only between 0 to 1
+    rand.nextDouble() * 100.0); //intensity of Heat zone
+    
+    heatMap.addData(point); // Adding Point on the Heat Map
+}
+
+//For Kotlin
+
+var rand = Random()
+
+for(i in 0..19){
+    var dataPoint = HeatMap.DataPoint(
+    rand.nextFloat(), // x-axis movement & value should be only between 0 to 1
+    rand.nextFloat(), // y-axis movement& value should be only between 0 to 1
+    rand.nextDouble() * 100.0) //intensity of Heat zone
+    
+    heatMap.addData(point)  // Adding Point on the Heat Map
 }
 ```
 
@@ -103,10 +126,18 @@ Changing the colour gradient.
 
 ```java
 //make the colour gradient from pink to yellow
+
+//for Java
 Map<Float, Integer> colorStops = new ArrayMap<>();
 colors.put(0.0f, 0xffee42f4);
 colors.put(1.0f, 0xffeef442);
 heatMap.setColorStops(colors);
+
+//For Kotlin
+val colorStops: Map<Float, Int> = ArrayMap()
+        colors.put(0.0f, -0x11bd0c)
+        colors.put(1.0f, -0x110bbe)
+        heatMap.setColorStops(colors)
 ```
 
 ### Opacity
