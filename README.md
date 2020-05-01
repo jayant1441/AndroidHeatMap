@@ -92,7 +92,6 @@ Now you can add data to the heat map.
 //You can increase or decrease the number of points by changing the range
 
 //For Java
-
 Random rand = new Random();
 
 for (int i = 0; i < 20; i++) {
@@ -105,7 +104,6 @@ for (int i = 0; i < 20; i++) {
 }
 
 //For Kotlin
-
 var rand = Random()
 
 for(i in 0..19){
